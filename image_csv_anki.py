@@ -12,14 +12,16 @@ from os import listdir
 from os.path import isfile, join
 
 if __name__ == "__main__":
-    path = 'put your path here'
+    path = raw_input('Introduce the path: ')
     directory = [f for f in listdir(path) if isfile(join(path, f))]  # get list from dir, empty because in dir
-    images = ["<img src='{}' >".format(elem) for elem in directory]  # give format html in anki
+    images = ["<img src='{}{}' >".format(path,elem) for elem in directory]  # give format html in anki
     previous_img = images[0]  # variable for array of images
     with open('output.csv', 'w') as f:
         for image in images[1:]:
             f.write(",".join([previous_img, image]) + "\n")
             previous_img = image
+    
+    print "The output.csv is build."
 
             # No CSV required
             # Output is two images in the same line
