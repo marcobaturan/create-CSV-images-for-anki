@@ -32,7 +32,7 @@ if __name__ == "__main__":
     path = raw_input('Introduce the path: ')
     directory = [f for f in listdir(path) if isfile(join(path, f))]  # get list from dir, empty because in dir
     directory.sort(key=lambda x: os.path.getmtime(x))  # this order by date
-    images = ["<img src='{}{}'>".format(path, elem) for elem in directory]  # give format html for flashcard
+    images = ["<img src='{}/{}'>".format(path, elem) for elem in directory]  # give format html for flashcard
     previous_img = images[0]  # variable for array of images
     with open('output.csv', 'w') as f:
         for image in images[1:]:
